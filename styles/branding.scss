@@ -4,20 +4,32 @@
 $brand_page_background: #252525;
 
 $fontsize: (
-	default: 11px,
-	field: 14px
+  default: 11px,
+  field: 14px,
 );
 
 $spacing: (
-	default: 20px,
-	2x: 40px
+  default: 20px,
+  2x: 40px,
 );
 
 // Colour order: default, lighter, darker
 $colour-palette: (
-	error: (#d0021b, #d0021b, #d0021b),
-	font: (#4a4a4a, #4a4a4a, #4a4a4a),
-	yellow: (#fcef5c, #fcef5c69, #fcef5c)
+  error: (
+    #d0021b,
+    #d0021b,
+    #d0021b,
+  ),
+  font: (
+    #4a4a4a,
+    #4a4a4a,
+    #4a4a4a,
+  ),
+  yellow: (
+    #5cfcbf,
+    #fcef5c69,
+    #fcef5c,
+  ),
 );
 
 // Colour variants for palette colours
@@ -28,8 +40,16 @@ $colours: ();
 
 // Create colours map from the colour palette maps and variants list
 @each $colour-entry, $colour-value in $colour-palette {
-  $colours-merge: map-zip($colour-variants, map-get($colour-palette, $colour-entry));
-  $colours: map-merge($colours, ($colour-entry: $colours-merge));
+  $colours-merge: map-zip(
+    $colour-variants,
+    map-get($colour-palette, $colour-entry)
+  );
+  $colours: map-merge(
+    $colours,
+    (
+      $colour-entry: $colours-merge,
+    )
+  );
 }
 
 // Function to return colours from the colours map
